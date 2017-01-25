@@ -1,0 +1,12 @@
+{
+    "name": "joelton/render-page",
+    "require": {
+        "phpunit/phpunit": "^5.7"
+    },
+    "authors": [
+        {
+            "name": "Joelton Guerreiro",
+            "email": "joeltonguerreiro@gmail.com"
+        }
+    ]
+}
