@@ -9,13 +9,22 @@ class RenderPage {
   }
 
   public function head(){
-    $head = '<head><title>'.
 
-      $this->title
+    $title = $this->title;
+    include_once('templates/header.php');
 
-      .'</title></head>';
+  }
 
-    return $head;
+  public function main(){
+
+    include_once('templates/main.php');
+
+  }
+
+  public function footer(){
+
+    include_once('templates/footer.php');
+
   }
 
   public function title($title){
@@ -26,32 +35,13 @@ class RenderPage {
 
   public function render(){
 
-    $html = '<!DOCTYPE html>'.
-      '<html>'.
-        $this->head() .
-        '<body>'.
-          'teste'.
-        '</body>'.
-      '</html>';
-
-    echo $html;
+      $this->head();
+      $this->main();
+      $this->footer();
 
 
   }
 
-  public function __get($title){
-    if(property_exists($this, $title)){
-      return $this->$title;
-    }
-  }
-  //
-  // public function __set($title, $value){
-  //   if(property_exists($this, $title)){
-  //     $this->$title = $value;
-  //   }
-  // }
-
-
-} // end class RenderPage
+}
 
  ?>
