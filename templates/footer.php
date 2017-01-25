@@ -1,7 +1,14 @@
 </body>
 
-<?php foreach ($js_files as $key => $value) : ?>
-  <script type="text/javascript" href="/assets/js/{$value}"></script>
-<?php endforeach; ?>
+<?php
+  if(sizeof($js_files) > 0) :
+    foreach ($js_files as $key => $value) :
+?>
+      <script src="assets/js/<?php echo $value ?>" charset="utf-8"></script>
+
+<?php
+    endforeach;
+  endif;
+?>
 
 </html>
