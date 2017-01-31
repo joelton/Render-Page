@@ -8,11 +8,11 @@ Clone o repositório
 
 Instale as dependências
 
-> composer install
+    composer install
 
 ### Executando os testes do PHPUnit
 
-> vendor/bin/phpunit --bootstrap src/Page.php tests/PageTest.php
+    vendor/bin/phpunit --bootstrap src/Page.php tests/PageTest.php
 
 ### Contato
 
