@@ -14,7 +14,7 @@ final class pageTest extends TestCase{
 
   public function testSingleton(){
 
-    #verifica se a instância do objeto $page2 é a mesma do objeto $this->page
+    //verifica se a instância do objeto $page2 é a mesma do objeto $this->page
     $page2 = Page::getInstance();
 
     $this->assertEquals(
@@ -22,7 +22,7 @@ final class pageTest extends TestCase{
       $page2
     );
 
-    #verifica se a instância do objeto $this->page é da classe Singleton
+    //verifica se a instância do objeto $this->page é da classe Singleton
     $this->assertInstanceOf(
       Singleton::class,
       $this->page
@@ -30,16 +30,16 @@ final class pageTest extends TestCase{
 
   }
 
-  #testa a inserção de título
+  //testa a inserção de título
   public function testGetSetTitle(){
 
-    #verifica se o valor default do title é Corollarium
+    //verifica se o valor default do title é Corollarium
     $this->assertEquals(
       'Corollarium',
       $this->page->getTitle()
     );
 
-    #não deve aceitar um parâmetro com string vazia
+    //não deve aceitar um parâmetro com string vazia
     $title = '';
     $this->page->setTitle($title);
 
@@ -48,7 +48,7 @@ final class pageTest extends TestCase{
       $this->page->getTitle()
     );
 
-    #não deve aceitar a chamada sem parâmetro
+    //não deve aceitar a chamada sem parâmetro
     $this->page->setTitle();
 
     $this->assertEquals(
@@ -56,7 +56,7 @@ final class pageTest extends TestCase{
       $this->page->getTitle()
     );
 
-    #deve retornar o novo título atribuído
+    //deve retornar o novo título atribuído
     $title = 'RenderPage';
     $this->page->setTitle($title);
 
@@ -67,15 +67,15 @@ final class pageTest extends TestCase{
 
   }
 
-  #testa a inserção de arquivos .css
+  //testa a inserção de arquivos .css
   public function testGetSetCssFiles(){
 
-    #a viarável $css_files deve estar vazia
+    //a viarável $css_files deve estar vazia
     $this->assertEmpty(
       $this->page->getCssFiles()
     );
 
-    #não deve aceitar uma string vazia
+    //não deve aceitar uma string vazia
     $css_files = '';
     $this->page->setCssFiles($css_files);
 
@@ -83,7 +83,7 @@ final class pageTest extends TestCase{
       $this->page->getCssFiles()
     );
 
-    #não deve aceitar um inteiro
+    //não deve aceitar um inteiro
     $css_files = 1;
     $this->page->setCssFiles($css_files);
 
@@ -91,14 +91,14 @@ final class pageTest extends TestCase{
       $this->page->getCssFiles()
     );
 
-    #não deve aceitar a chamada sem parâmetro
+    //não deve aceitar a chamada sem parâmetro
     $this->page->setCssFiles();
 
     $this->assertEmpty(
       $this->page->getCssFiles()
     );
 
-    #não deve aceitar um arquivo que não existe no path assets/css
+    //não deve aceitar um arquivo que não existe no path assets/css
     $css_files = 'teste.css';
     $this->page->setCssFiles($css_files);
 
@@ -106,7 +106,7 @@ final class pageTest extends TestCase{
       $this->page->getCssFiles()
     );
 
-    #deve aceitar um único path de arquivo
+    //deve aceitar um único path de arquivo
     $css_files = 'main.css';
     $this->page->setCssFiles($css_files);
 
@@ -114,7 +114,7 @@ final class pageTest extends TestCase{
       $this->page->getCssFiles()
     );
 
-    #deve aceitar multiplos paths de arquivos
+    //deve aceitar multiplos paths de arquivos
     $css_files = array('main.css', 'bootstrap.min.css');
     $this->page->setCssFiles($css_files);
 
@@ -129,15 +129,15 @@ final class pageTest extends TestCase{
 
   }
 
-  #testa a inserção de arquivos .js
+  //testa a inserção de arquivos .js
   public function testSetJsFiles(){
 
-    #a variável $js_files deve estar vazia inicialmente
+    //a variável $js_files deve estar vazia inicialmente
     $this->assertEmpty(
       $this->page->getJsFiles()
     );
 
-    #não deve aceitar uma string vazia
+    //não deve aceitar uma string vazia
     $js_files = '';
     $this->page->setJsFiles($js_files);
 
@@ -145,7 +145,7 @@ final class pageTest extends TestCase{
       $this->page->getJsFiles()
     );
 
-    #não deve aceitar um inteiro
+    //não deve aceitar um inteiro
     $js_files = 1;
     $this->page->setJsFiles($js_files);
 
@@ -153,14 +153,14 @@ final class pageTest extends TestCase{
       $this->page->getJsFiles()
     );
 
-    #não deve aceitar a chamada sem parâmetro
+    //não deve aceitar a chamada sem parâmetro
     $this->page->setJsFiles();
 
     $this->assertEmpty(
       $this->page->getJsFiles()
     );
 
-    #não deve aceitar um arquivo que não existe no path assets/js
+    //não deve aceitar um arquivo que não existe no path assets/js
     $js_files = 'teste.js';
     $this->page->setJsFiles($js_files);
 
@@ -168,7 +168,7 @@ final class pageTest extends TestCase{
       $this->page->getJsFiles()
     );
 
-    #deve aceitar um único path de arquivo
+    //deve aceitar um único path de arquivo
     $js_files = 'main.js';
     $this->page->setJsFiles($js_files);
 
@@ -176,7 +176,7 @@ final class pageTest extends TestCase{
       $this->page->getJsFiles()
     );
 
-    #deve aceitar multiplos paths de arquivos
+    //deve aceitar multiplos paths de arquivos
     $js_files = array('jquery.min.js', 'bootstrap.min.js');
     $this->page->setJsFiles($js_files);
 
