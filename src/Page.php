@@ -11,7 +11,7 @@ class Page extends Singleton{
   private $js_files = [];
 
   //adiciona um título à página
-  public function setTitle($title){
+  public function setTitle($title = ''){
     //atribui o valor passado por parâmetro se o mesmo não for vazio
     if($title != ''){
       $this->title = $title;

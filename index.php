@@ -8,7 +8,7 @@ $page = Page::getInstance();
 
 $page->setTitle();
 
-$css_files = array('main.css', 'bootstrap.min.css', 1);
+$css_files = array('main.css', 'bootstrap.min.css');
 $page->setCssFiles($css_files);
 
 $js_files = array('jquery.min.js', 'bootstrap.min.js');
