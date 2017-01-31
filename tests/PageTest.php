@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types=1);
-
 use PHPUnit\Framework\TestCase;
+use RenderPage\Page;
+use RenderPage\Singleton;
 
 final class pageTest extends TestCase{
 
@@ -14,82 +14,42 @@ final class pageTest extends TestCase{
 
   public function testSingleton(){
 
-    $this->assertInstanceOf(
-      'Singleton',
-      $page
-    );
+    #verifica se a instância do objeto $page2 é a mesma do objeto $this->page
+    $page2 = Page::getInstance();
 
     $this->assertEquals(
-      $page,
-      Page::getInstance()
+      $this->page,
+      $page2
+    );
+
+    #verifica se a instância do objeto $this->page é da classe Singleton
+    $this->assertInstanceOf(
+      Singleton::class,
+      $this->page
     );
 
   }
 
-  #testa a inserção de arquivos .css
-  public function testSetCssFiles(){
+  #testa a inserção de título
+  public function testGetSetTitle(){
 
-    $page = Page::getInstance();
-
-    #a viarável $css_files deve estar vazia
-    $this->assertEmpty(
-      $page->getCssFiles()
-    );
-
-    $css_files = 'file';
-    $page->setCssFiles($css_files);
-
-    #a variável $css_files deve conter os valores atribuídos
-    $this->assertNotEmpty(
-      $page->getCssFiles()
-    );
-
-    $css_files = array('file1', 'file2');
-    $page->setCssFiles($css_files);
-
-    #a variável $css_files deve conter os valores atribuídos
-    $this->assertNotEmpty(
-      $page->getCssFiles()
-    );
-
-  }
-
-  #testa a inserção de arquivos .js
-  public function testSetJsFiles(){
-
-    $page = Page::getInstance();
-
-    #a variável $js_files deve estar vazia
-    $this->assertEmpty(
-      $page->getJsFiles()
-    );
-
-    $js_files = 'file';
-    $page->setJsFiles($js_files);
-
-    #a variável $js_files deve conter os valores atribuídos
-    $this->assertNotEmpty(
-      $page->getJsFiles()
-    );
-
-    #a variável $js_files deve conter os valores atribuídos
-    $js_files = array('file1', 'file2');
-    $page->setJsFiles($js_files);
-
-    $this->assertNotEmpty(
-      $page->getJsFiles()
-    );
-
-  }
-
-  public function testSetTitle(){
+    #verifica se o valor default do title é Corollarium
     $this->assertEquals(
       'Corollarium',
       $this->page->getTitle()
     );
 
-    $title = 'RenderPage';
+    #não deve aceitar um parâmetro vazio
+    $title = '';
+    $this->page->setTitle($title);
 
+    $this->assertEquals(
+      'Corollarium',
+      $this->page->getTitle()
+    );
+
+    #deve retornar o novo título atribuído
+    $title = 'RenderPage';
     $this->page->setTitle($title);
 
     $this->assertEquals(
@@ -97,6 +57,127 @@ final class pageTest extends TestCase{
       $this->page->getTitle()
     );
 
+  }
+
+  #testa a inserção de arquivos .css
+  public function testGetSetCssFiles(){
+
+    #a viarável $css_files deve estar vazia
+    $this->assertEmpty(
+      $this->page->getCssFiles()
+    );
+
+    #não deve aceitar uma string vazia
+    $css_files = '';
+    $this->page->setCssFiles($css_files);
+
+    $this->assertEmpty(
+      $this->page->getCssFiles()
+    );
+
+    #não deve aceitar um inteiro
+    $css_files = 1;
+    $this->page->setCssFiles($css_files);
+
+    $this->assertEmpty(
+      $this->page->getCssFiles()
+    );
+
+    #não deve aceitar um arquivo que não existe no path assets/css
+    $css_files = 'teste.css';
+    $this->page->setCssFiles($css_files);
+
+    $this->assertEmpty(
+      $this->page->getCssFiles()
+    );
+
+    #deve aceitar um único path de arquivo
+    $css_files = 'main.css';
+    $this->page->setCssFiles($css_files);
+
+    $this->assertNotEmpty(
+      $this->page->getCssFiles()
+    );
+
+    #deve aceitar multiplos paths de arquivos
+    $css_files = array('main.css', 'bootstrap.min.css');
+    $this->page->setCssFiles($css_files);
+
+    $this->assertNotEmpty(
+      $this->page->getCssFiles()
+    );
+
+    //verifica se existe mais de 1 item no array
+    $this->assertGreaterThan(
+      1, sizeof($this->page->getCssFiles())
+    );
+
+  }
+
+  #testa a inserção de arquivos .js
+  public function testSetJsFiles(){
+
+    #a variável $js_files deve estar vazia inicialmente
+    $this->assertEmpty(
+      $this->page->getJsFiles()
+    );
+
+    #não deve aceitar uma string vazia
+    $js_files = '';
+    $this->page->setJsFiles($js_files);
+
+    $this->assertEmpty(
+      $this->page->getJsFiles()
+    );
+
+    #não deve aceitar um inteiro
+    $js_files = 1;
+    $this->page->setJsFiles($js_files);
+
+    $this->assertEmpty(
+      $this->page->getJsFiles()
+    );
+
+    #não deve aceitar um arquivo que não existe no path assets/js
+    $js_files = 'teste.js';
+    $this->page->setJsFiles($js_files);
+
+    $this->assertEmpty(
+      $this->page->getJsFiles()
+    );
+
+    #deve aceitar um único path de arquivo
+    $js_files = 'main.js';
+    $this->page->setJsFiles($js_files);
+
+    $this->assertNotEmpty(
+      $this->page->getJsFiles()
+    );
+
+    #deve aceitar multiplos paths de arquivos
+    $js_files = array('jquery.min.js', 'bootstrap.min.js');
+    $this->page->setJsFiles($js_files);
+
+    $this->assertNotEmpty(
+      $this->page->getJsFiles()
+    );
+
+    //verifica se existe mais de um item no array
+    $this->assertGreaterThan(
+      1, sizeof($this->page->getJsFiles())
+    );
+
+  }
+
+  public function testTemplatesExists(){
+    //verifica se o arquivo de template header.php existe
+    $this->assertFileExists('templates/header.php');
+
+    //verifica se o arquivo de template page.php existe
+    $this->assertFileExists('templates/page.php');
+
+    //verifica se o arquivo de template footer.php existe
+    $this->assertFileExists('templates/footer.php');
   }
 
 }
