@@ -1,12 +1,17 @@
 {
     "name": "joelton/render-page",
     "require": {
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {"RenderPage\\": "src/"}
     },
     "authors": [
         {
             "name": "Joelton Guerreiro",
             "email": "joeltonguerreiro@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+    }
 }

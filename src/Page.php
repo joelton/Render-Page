@@ -1,12 +1,14 @@
 <?php
 
-include_once('src/Singleton.php');
+namespace RenderPage;
+
+use RenderPage\Singleton;
 
 class Page extends Singleton{
 
-  protected $title = 'Corollarium';
-  protected $css_files = [];
-  protected $js_files = [];
+  private $title = 'Corollarium';
+  private $css_files = [];
+  private $js_files = [];
 
   public function setTitle($title){
     $this->title = $title;
@@ -44,7 +46,39 @@ class Page extends Singleton{
     return $this->js_files;
   }
 
+  /**
+  * Gera a tag head utilizando um template base
+  */
+  public function head(){
 
+    $title = $this->title;
+    $css_files = $this->css_files;
+
+    include_once('templates/header.php');
+
+  }
+
+  /**
+  * Gera o corpo da página utilizando um template base
+  */
+  public function page(){
+    include_once('templates/page.php');
+  }
+
+  /**
+  * Gera o rodapé utilizando um template base
+  */
+  public function footer(){
+    $js_files = $this->js_files;
+    include_once('templates/footer.php');
+  }
+
+  //Renderiza a página
+  public function render(){
+    $this->head();
+    $this->page();
+    $this->footer();
+  }
 
 }
 

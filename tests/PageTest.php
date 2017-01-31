@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-final class indexTest extends TestCase{
+final class pageTest extends TestCase{
 
   protected $page = null;
 
   public function setUp(){
-    $this->page = RenderPage::getInstance();
+    $this->page = Page::getInstance();
   }
 
   public function testSingleton(){
-
-    $page = RenderPage::getInstance();
 
     $this->assertInstanceOf(
       'Singleton',
@@ -23,7 +21,7 @@ final class indexTest extends TestCase{
 
     $this->assertEquals(
       $page,
-      RenderPage::getInstance()
+      Page::getInstance()
     );
 
   }
@@ -31,7 +29,7 @@ final class indexTest extends TestCase{
   #testa a inserção de arquivos .css
   public function testSetCssFiles(){
 
-    $page = RenderPage::getInstance();
+    $page = Page::getInstance();
 
     #a viarável $css_files deve estar vazia
     $this->assertEmpty(
@@ -59,7 +57,7 @@ final class indexTest extends TestCase{
   #testa a inserção de arquivos .js
   public function testSetJsFiles(){
 
-    $page = RenderPage::getInstance();
+    $page = Page::getInstance();
 
     #a variável $js_files deve estar vazia
     $this->assertEmpty(

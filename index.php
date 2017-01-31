@@ -1,10 +1,12 @@
 <?php
 
-include_once('src/RenderPage.php');
+require 'vendor/autoload.php';
 
-$page = RenderPage::getInstance();
+use RenderPage\Page;
 
-$page->setTitle('IT Lean');
+$page = Page::getInstance();
+
+// $page->setTitle('IT Lean');
 
 $css_files = array('main.css', 'bootstrap.min.css');
 $page->setCssFiles($css_files);

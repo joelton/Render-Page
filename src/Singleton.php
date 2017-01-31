@@ -1,8 +1,7 @@
 <?php
 
-/**
- *
- */
+namespace RenderPage;
+
 class Singleton
 {
 
