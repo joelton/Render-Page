@@ -6,7 +6,7 @@ use RenderPage\Page;
 
 $page = Page::getInstance();
 
-//adiciona um título estilizado na página
+//adiciona um título alternativo na página
 // $page->setTitle('RenderPage');
 
 //adiciona os arquivos .css na página, eles devem estar presentes no path assets/css
