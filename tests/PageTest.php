@@ -39,9 +39,17 @@ final class pageTest extends TestCase{
       $this->page->getTitle()
     );
 
-    #não deve aceitar um parâmetro vazio
+    #não deve aceitar um parâmetro com string vazia
     $title = '';
     $this->page->setTitle($title);
+
+    $this->assertEquals(
+      'Corollarium',
+      $this->page->getTitle()
+    );
+
+    #não deve aceitar a chamada sem parâmetro
+    $this->page->setTitle();
 
     $this->assertEquals(
       'Corollarium',
@@ -78,6 +86,13 @@ final class pageTest extends TestCase{
     #não deve aceitar um inteiro
     $css_files = 1;
     $this->page->setCssFiles($css_files);
+
+    $this->assertEmpty(
+      $this->page->getCssFiles()
+    );
+
+    #não deve aceitar a chamada sem parâmetro
+    $this->page->setCssFiles();
 
     $this->assertEmpty(
       $this->page->getCssFiles()
@@ -133,6 +148,13 @@ final class pageTest extends TestCase{
     #não deve aceitar um inteiro
     $js_files = 1;
     $this->page->setJsFiles($js_files);
+
+    $this->assertEmpty(
+      $this->page->getJsFiles()
+    );
+
+    #não deve aceitar a chamada sem parâmetro
+    $this->page->setJsFiles();
 
     $this->assertEmpty(
       $this->page->getJsFiles()

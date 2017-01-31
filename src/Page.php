@@ -24,7 +24,7 @@ class Page extends Singleton{
   }
 
   //atribui os arquivos .css passados por parâmetro na variável $css_files
-  public function setCssFiles($files){
+  public function setCssFiles($files = ''){
     //verfica se o que foi passado por parâmetro é diferente de vazio
     if($files != ''){
       //verifica se o que foi passado por parâmetro é um array
@@ -52,7 +52,7 @@ class Page extends Singleton{
     return $this->css_files;
   }
 
-  public function setJsFiles($files){
+  public function setJsFiles($files = ''){
 
     if($files != ''){
       if(is_array($files)){
